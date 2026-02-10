@@ -1,0 +1,166 @@
+%CMF
+# %PSECTS Section
+# For each object file, details of its psects are enumerated here.
+# The begining of the section is indicated by %PSECTS.  The first
+# line indicates the name of the first object file, e.g.
+#    $foo.obj
+# Each line that follows describes a psect in that object file, until
+# the next object file.  The lines that describe a psect have the
+# format:
+#    <psect name> <class name> <space> <link address> <load addresses> <length> <delta> <reloc>
+# All addresses and the length are given in unqualified hexadecimal
+# in delta units.  Any other numeric values are decimal.
+%PSECTS
+$build/default/debug/ESCRITURA_EEPROM.o
+Code - 0 0 0 23 2 1
+config CONFIG 4 2007 2007 1 2 1
+# %UNUSED Section
+# This section enumerates the unused ranges of each CLASS. Each entry
+# is described on a single line as follows:
+#    <class name> <range> <delta>
+# Addresses given in the range are in hexadecimal and units of delta.
+%UNUSED
+RAM 20-6F 1
+RAM A0-EF 1
+RAM 110-16F 1
+RAM 190-1EF 1
+BANK0 20-6F 1
+BANK1 A0-EF 1
+BANK2 110-16F 1
+BANK3 190-1EF 1
+CONST 23-1FFF 2
+ENTRY 23-1FFF 2
+IDLOC 2000-2003 2
+CODE 23-1FFF 2
+SFR1 80-9F 1
+SFR2 100-10F 1
+SFR3 180-18F 1
+COMMON 70-7F 1
+EEDATA 2100-21FF 2
+STRCODE 23-1FFF 2
+STRING 23-1FFF 2
+# %LINETAB Section
+# This section enumerates the file/line to address mappings.
+# The beginning of the section is indicated by %LINETAB.
+# The first line indicates the name of the first object file, e.g.
+#   $foo.obj
+# Each line that follows describes a single mapping until the next
+# object file.  Mappings have the following format:
+#    <address> <psect name> <class name> ><line number>:<file name>
+# The address is absolute and given given in unqualified hex 
+# in delta units of the psect. All mappings within an object file
+# are in ascending order of addresses.
+# All other numeric values are in decimal.
+%LINETAB
+$build/default/debug/ESCRITURA_EEPROM.o
+0 Code ABS >13:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+4 Code ABS >22:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+5 Code ABS >23:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+6 Code ABS >24:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+7 Code ABS >25:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+8 Code ABS >29:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+9 Code ABS >30:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+A Code ABS >32:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+B Code ABS >33:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+C Code ABS >34:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+D Code ABS >35:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+E Code ABS >37:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+F Code ABS >38:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+10 Code ABS >39:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+11 Code ABS >40:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+12 Code ABS >42:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+13 Code ABS >43:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+14 Code ABS >44:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+15 Code ABS >48:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+16 Code ABS >49:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+17 Code ABS >50:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+18 Code ABS >51:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+19 Code ABS >52:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+1A Code ABS >53:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+1B Code ABS >56:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+1C Code ABS >57:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+1D Code ABS >59:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+1E Code ABS >62:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+1F Code ABS >63:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+20 Code ABS >64:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+21 Code ABS >65:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+22 Code ABS >68:/home/trisswn/MPLABXProjects/EEPROM_MEMORY.X/ESCRITURA_EEPROM.asm
+# %SYMTAB Section
+# An enumeration of all symbols in the program.
+# The beginning of the section is indicated by %SYMTAB.
+# Each line describes a single symbol as follows:
+#    <label> <value> [-]<load-adj> <class> <space> <psect> <file-name>
+# The value and load-adj are both in unqualified hexadecimal.
+# All other numeric values are in decimal.  The load-adj is the
+# quantity one needs to add to the symbol value in order to obtain the load
+# address of the symbol.  This value may be signed. If the symbol
+# was defined in a psect then <psect> will be "-". File-name
+# is the name of the object file in which the symbol was defined.
+%SYMTAB
+__Hspace_0 46 0 ABS 0 - -
+__Hspace_1 0 0 ABS 0 - -
+__Hspace_3 0 0 ABS 0 - -
+__Hspace_4 400F 0 ABS 0 - -
+__Hudata_bank0 46 0 ABS 0 udata_bank0 -
+__Hudata_bank1 46 0 ABS 0 udata_bank1 -
+__Hudata_bank2 46 0 ABS 0 udata_bank2 -
+__Hudata_bank3 46 0 ABS 0 udata_bank3 -
+__L__absolute__ 0 0 ABS 0 __absolute__ -
+__Hedata 46 0 ABS 0 edata -
+__Hudata 46 0 ABS 0 udata -
+__Hconfig 4010 0 CONFIG 4 config -
+__Ledata 46 0 ABS 0 edata -
+__Ludata 46 0 ABS 0 udata -
+__HCode 46 0 ABS 0 Code -
+__Hcode 46 0 ABS 0 code -
+__Hdata 46 0 ABS 0 data -
+__LCode 0 0 ABS 0 Code -
+__Lcode 46 0 ABS 0 code -
+__Ldata 46 0 ABS 0 data -
+__S0 0 0 ABS 0 - -
+__S1 0 0 ABS 0 - -
+__S3 0 0 ABS 0 - -
+__Lconfig 0 0 CONFIG 4 config -
+__Lspace_0 0 0 ABS 0 - -
+__Lspace_1 0 0 ABS 0 - -
+__Lspace_3 0 0 ABS 0 - -
+__Lspace_4 0 0 ABS 0 - -
+__Ludata_bank0 46 0 ABS 0 udata_bank0 -
+__Ludata_bank1 46 0 ABS 0 udata_bank1 -
+__Ludata_bank2 46 0 ABS 0 udata_bank2 -
+__Ludata_bank3 46 0 ABS 0 udata_bank3 -
+__H__absolute__ 0 0 ABS 0 __absolute__ -
+__Hudata_shr 46 0 ABS 0 udata_shr -
+__Ludata_shr 46 0 ABS 0 udata_shr -
+# %SPLITSTAB Section
+# This section enumerates all the psect splits performed by the assembler.
+# The beginning of the section is indicated by %SPLITSTAB.
+# Each line is a record a particular split, where the parent psect is on
+# the left and the child on the right.  Note that a child psect is always
+# split form the top of the parent psect. All splits from a given parent
+# are listed in the order in which they occurred.
+%SPLITSTAB
+# %DABS Section
+# This section contains a table of all usuage of the assember
+# directive DABS in the program. Each line has the following format:
+#   <name> <space> <address> <size>
+# If the DABS was originally labelled then that shall be <name>,
+# otherwise name will be "-".  The <space> number is in decimal.
+# <address> and <size> are in byte units as unqaulified hexadecimal
+%DABS
+# %SEGMENTS Section
+# This sections enumerates the segments of the program.  Each segment
+# is described on a single line as follows:
+#    <name> <space> <link address> <file address> <size> <delta>
+# Addresses and size are in unqualified hexadecimal.  The link address
+# and size are in units of delta. The file address is in units of bytes.
+# All other numeric quantities are in decimal.
+%SEGMENTS
+# %NOTES Section
+# This section contains data of all the note-psects.  The beginning of the section
+# is indicated by %NOTES. The first line indicates the name and decimal
+# byte-length of the first note-psect, e.g.
+#   $codecov_info_hdr 16
+# Each line that follows contains the byte-data of the psect in hexadecimal as a
+# space-separated list. These lines are limited to 16 bytes of data.
+%NOTES

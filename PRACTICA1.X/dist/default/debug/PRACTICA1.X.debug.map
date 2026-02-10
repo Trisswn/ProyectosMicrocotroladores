@@ -1,0 +1,97 @@
+Microchip MPLAB XC8 PIC(R) Assembler V3.10
+
+Linker command line:
+
+-W-3 --edf=/opt/microchip/xc8/v3.10/pic/dat/20250813170317_en.msgs -cs \
+  -h+dist/default/debug/PRACTICA1.X.debug.sym \
+  --cmf=dist/default/debug/PRACTICA1.X.debug.cmf -z -Q16F84A \
+  -o/tmp/xcXInKNla/driver_tmp_3.o --fixupoverflow=error \
+  -ver=XC8 PIC(R) Assembler --fixupoverflow=lstwarn \
+  -Mdist/default/debug/PRACTICA1.X.debug.map -E1 -ACODE=00h-03FFh \
+  -ASTRCODE=00h-03FFh -ASTRING=00h-0FFhx4 -ACONST=00h-0FFhx4 \
+  -AENTRY=00h-0FFhx4 -ABANK0=0Ch-04Dh -ARAM=0Ch-04Dh -AABS1=0Ch-04Fh \
+  -ACOMMON=04Eh-04Fh -ASFR0=00h-0Bh -ASFR1=080h-0CDh -ACONFIG=02007h-02007h \
+  -DCONFIG=2 -AIDLOC=02000h-02003h -DIDLOC=2 -AEEDATA=00h-03Fh/02100h \
+  -DEEDATA=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
+  build/default/debug/PROGRAMA1.o 
+
+Object code version is 3.11
+
+Machine type is 16F84A
+
+
+
+                Name                               Link     Load   Length Selector   Space Scale
+build/default/debug/PROGRAMA1.o
+                config                             2007     2007        1        0       4
+                Code                                  0        0       13        0       0
+
+TOTAL           Name                               Link     Load   Length     Space
+        CLASS   CODE           
+
+        CLASS   STRCODE        
+
+        CLASS   STRING         
+
+        CLASS   CONST          
+
+        CLASS   ENTRY          
+
+        CLASS   BANK0          
+
+        CLASS   RAM            
+
+        CLASS   ABS1           
+
+        CLASS   COMMON         
+
+        CLASS   SFR0           
+
+        CLASS   SFR1           
+
+        CLASS   CONFIG         
+                config                             2007     2007        1         4
+
+        CLASS   IDLOC          
+
+        CLASS   EEDATA         
+
+        CLASS   UNCLASSED
+                Code                                  0        0       13         0
+
+
+SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
+
+
+
+UNUSED ADDRESS RANGES
+
+        Name                Unused          Largest block    Delta
+        BANK0            000C-004D             42           1
+        CODE             0013-03FF            3ED           2
+        COMMON           004E-004F              2           1
+        CONST            0013-03FF            100           2
+        EEDATA           2100-213F             40           2
+        ENTRY            0013-03FF            100           2
+        IDLOC            2000-2003              4           2
+        RAM              000C-004D             42           1
+        SFR1             0080-00CD             4E           1
+        STRCODE          0013-03FF            3ED           2
+        STRING           0013-03FF            100           2
+
+                                  Symbol Table
+
+__HCode         Code         0013  __H__absolute__ __absolute__ 0000
+__Hcode         code         0026  __Hconfig       config       2008
+__Hdata         data         0026  __Hedata        edata        0026
+__Hspace_0      (abs)        0026  __Hspace_1      (abs)        0000
+__Hspace_3      (abs)        0000  __Hspace_4      (abs)        400F
+__Hudata        udata        0026  __Hudata_bank0  udata_bank0  0026
+__LCode         Code         0000  __L__absolute__ __absolute__ 0000
+__Lcode         code         0026  __Lconfig       config       0000
+__Ldata         data         0026  __Ledata        edata        0026
+__Lspace_0      (abs)        0000  __Lspace_1      (abs)        0000
+__Lspace_3      (abs)        0000  __Lspace_4      (abs)        0000
+__Ludata        udata        0026  __Ludata_bank0  udata_bank0  0026
+__S0            (abs)        0000  __S1            (abs)        0000
+__S3            (abs)        0000  

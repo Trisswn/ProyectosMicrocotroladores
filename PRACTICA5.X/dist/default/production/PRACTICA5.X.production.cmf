@@ -1,0 +1,325 @@
+%CMF
+# %PSECTS Section
+# For each object file, details of its psects are enumerated here.
+# The begining of the section is indicated by %PSECTS.  The first
+# line indicates the name of the first object file, e.g.
+#    $foo.obj
+# Each line that follows describes a psect in that object file, until
+# the next object file.  The lines that describe a psect have the
+# format:
+#    <psect name> <class name> <space> <link address> <load addresses> <length> <delta> <reloc>
+# All addresses and the length are given in unqualified hexadecimal
+# in delta units.  Any other numeric values are decimal.
+%PSECTS
+$build/default/production/CONTADOR_HZ.o
+Code - 0 0 0 C4 2 1
+config CONFIG 4 2007 2007 1 2 1
+# %UNUSED Section
+# This section enumerates the unused ranges of each CLASS. Each entry
+# is described on a single line as follows:
+#    <class name> <range> <delta>
+# Addresses given in the range are in hexadecimal and units of delta.
+%UNUSED
+RAM 20-6F 1
+RAM A0-EF 1
+RAM 110-16F 1
+RAM 190-1EF 1
+BANK0 20-6F 1
+BANK1 A0-EF 1
+BANK2 110-16F 1
+BANK3 190-1EF 1
+CONST C4-1FFF 2
+ENTRY C4-1FFF 2
+IDLOC 2000-2003 2
+CODE C4-1FFF 2
+SFR3 188-18F 1
+COMMON 70-7F 1
+EEDATA 2100-21FF 2
+STRCODE C4-1FFF 2
+STRING C4-1FFF 2
+# %LINETAB Section
+# This section enumerates the file/line to address mappings.
+# The beginning of the section is indicated by %LINETAB.
+# The first line indicates the name of the first object file, e.g.
+#   $foo.obj
+# Each line that follows describes a single mapping until the next
+# object file.  Mappings have the following format:
+#    <address> <psect name> <class name> ><line number>:<file name>
+# The address is absolute and given given in unqualified hex 
+# in delta units of the psect. All mappings within an object file
+# are in ascending order of addresses.
+# All other numeric values are in decimal.
+%LINETAB
+$build/default/production/CONTADOR_HZ.o
+0 Code ABS >42:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+4 Code ABS >45:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+5 Code ABS >51:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+6 Code ABS >52:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+7 Code ABS >54:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+8 Code ABS >55:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+9 Code ABS >57:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+A Code ABS >58:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+B Code ABS >59:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+C Code ABS >60:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+D Code ABS >64:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+E Code ABS >65:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+F Code ABS >67:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+10 Code ABS >69:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+11 Code ABS >70:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+12 Code ABS >71:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+13 Code ABS >73:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+14 Code ABS >74:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+15 Code ABS >75:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+16 Code ABS >76:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+17 Code ABS >78:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+18 Code ABS >79:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+19 Code ABS >83:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+1A Code ABS >84:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+1B Code ABS >86:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+1C Code ABS >92:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+1D Code ABS >93:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+1E Code ABS >95:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+1F Code ABS >98:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+20 Code ABS >99:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+21 Code ABS >100:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+22 Code ABS >101:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+23 Code ABS >105:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+24 Code ABS >106:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+25 Code ABS >107:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+26 Code ABS >109:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+27 Code ABS >110:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+28 Code ABS >111:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+29 Code ABS >112:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+2A Code ABS >116:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+2B Code ABS >120:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+2C Code ABS >123:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+2D Code ABS >124:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+2E Code ABS >127:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+2F Code ABS >128:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+30 Code ABS >133:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+31 Code ABS >134:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+32 Code ABS >135:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+33 Code ABS >136:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+34 Code ABS >139:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+35 Code ABS >140:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+36 Code ABS >143:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+37 Code ABS >144:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+38 Code ABS >147:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+39 Code ABS >148:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+3A Code ABS >149:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+3B Code ABS >150:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+3C Code ABS >151:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+3D Code ABS >152:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+3E Code ABS >153:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+3F Code ABS >154:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+40 Code ABS >156:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+41 Code ABS >161:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+42 Code ABS >162:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+43 Code ABS >163:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+44 Code ABS >166:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+45 Code ABS >167:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+46 Code ABS >170:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+47 Code ABS >171:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+48 Code ABS >174:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+49 Code ABS >175:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+4A Code ABS >178:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+4B Code ABS >179:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+4C Code ABS >180:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+4D Code ABS >181:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+4E Code ABS >182:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+4F Code ABS >183:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+50 Code ABS >185:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+51 Code ABS >189:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+52 Code ABS >190:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+53 Code ABS >191:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+54 Code ABS >192:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+55 Code ABS >193:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+56 Code ABS >194:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+57 Code ABS >195:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+58 Code ABS >196:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+59 Code ABS >197:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+5A Code ABS >198:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+5B Code ABS >199:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+5C Code ABS >200:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+5D Code ABS >201:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+5E Code ABS >204:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+5F Code ABS >205:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+60 Code ABS >206:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+61 Code ABS >207:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+62 Code ABS >208:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+63 Code ABS >209:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+64 Code ABS >210:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+65 Code ABS >211:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+66 Code ABS >214:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+67 Code ABS >215:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+68 Code ABS >216:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+69 Code ABS >217:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+6A Code ABS >218:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+6B Code ABS >219:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+6C Code ABS >220:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+6D Code ABS >221:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+6E Code ABS >224:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+6F Code ABS >225:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+70 Code ABS >226:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+71 Code ABS >227:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+72 Code ABS >230:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+73 Code ABS >231:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+74 Code ABS >232:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+75 Code ABS >233:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+76 Code ABS >238:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+77 Code ABS >239:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+78 Code ABS >240:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+79 Code ABS >244:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+7A Code ABS >245:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+7B Code ABS >246:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+7C Code ABS >247:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+7D Code ABS >250:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+7E Code ABS >251:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+7F Code ABS >252:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+80 Code ABS >255:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+81 Code ABS >256:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+82 Code ABS >257:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+83 Code ABS >258:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+84 Code ABS >260:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+85 Code ABS >261:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+86 Code ABS >262:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+87 Code ABS >263:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+88 Code ABS >266:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+89 Code ABS >270:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+8A Code ABS >271:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+8B Code ABS >272:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+8C Code ABS >273:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+8D Code ABS >274:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+8E Code ABS >278:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+8F Code ABS >282:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+90 Code ABS >283:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+91 Code ABS >290:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+92 Code ABS >291:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+93 Code ABS >292:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+94 Code ABS >293:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+95 Code ABS >294:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+96 Code ABS >295:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+97 Code ABS >296:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+98 Code ABS >300:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+99 Code ABS >301:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+9A Code ABS >302:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+9B Code ABS >303:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+9C Code ABS >304:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+9D Code ABS >305:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+9E Code ABS >306:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+9F Code ABS >310:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+A0 Code ABS >311:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+A1 Code ABS >312:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+A2 Code ABS >315:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+A3 Code ABS >316:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+A4 Code ABS >317:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+A5 Code ABS >322:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+A6 Code ABS >323:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+A7 Code ABS >325:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+A8 Code ABS >326:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+A9 Code ABS >327:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+AA Code ABS >330:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+AB Code ABS >331:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+AC Code ABS >332:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+AD Code ABS >333:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+AE Code ABS >334:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+AF Code ABS >339:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+B0 Code ABS >340:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+B1 Code ABS >343:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+B2 Code ABS >344:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+B3 Code ABS >346:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+B4 Code ABS >348:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+B5 Code ABS >349:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+B6 Code ABS >350:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+B7 Code ABS >351:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+B8 Code ABS >356:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+B9 Code ABS >359:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+BA Code ABS >360:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+BB Code ABS >361:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+BC Code ABS >362:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+BD Code ABS >365:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+BE Code ABS >366:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+BF Code ABS >367:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+C0 Code ABS >370:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+C1 Code ABS >373:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+C2 Code ABS >376:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+C3 Code ABS >379:/home/trisswn/MPLABXProjects/PRACTICA5.X/CONTADOR_HZ.asm
+# %SYMTAB Section
+# An enumeration of all symbols in the program.
+# The beginning of the section is indicated by %SYMTAB.
+# Each line describes a single symbol as follows:
+#    <label> <value> [-]<load-adj> <class> <space> <psect> <file-name>
+# The value and load-adj are both in unqualified hexadecimal.
+# All other numeric values are in decimal.  The load-adj is the
+# quantity one needs to add to the symbol value in order to obtain the load
+# address of the symbol.  This value may be signed. If the symbol
+# was defined in a psect then <psect> will be "-". File-name
+# is the name of the object file in which the symbol was defined.
+%SYMTAB
+__Hspace_0 188 0 ABS 0 - -
+__Hspace_1 0 0 ABS 0 - -
+__Hspace_3 0 0 ABS 0 - -
+__Hspace_4 400F 0 ABS 0 - -
+__Hudata_bank0 188 0 ABS 0 udata_bank0 -
+__Hudata_bank1 188 0 ABS 0 udata_bank1 -
+__Hudata_bank2 188 0 ABS 0 udata_bank2 -
+__Hudata_bank3 188 0 ABS 0 udata_bank3 -
+__L__absolute__ 0 0 ABS 0 __absolute__ -
+__Hedata 188 0 ABS 0 edata -
+__Hudata 188 0 ABS 0 udata -
+__Hconfig 4010 0 CONFIG 4 config -
+__Ledata 188 0 ABS 0 edata -
+__Ludata 188 0 ABS 0 udata -
+__HCode 188 0 ABS 0 Code -
+__Hcode 188 0 ABS 0 code -
+__Hdata 188 0 ABS 0 data -
+__LCode 0 0 ABS 0 Code -
+__Lcode 188 0 ABS 0 code -
+__Ldata 188 0 ABS 0 data -
+__S0 0 0 ABS 0 - -
+__S1 0 0 ABS 0 - -
+__S3 0 0 ABS 0 - -
+__Lconfig 0 0 CONFIG 4 config -
+__Lspace_0 0 0 ABS 0 - -
+__Lspace_1 0 0 ABS 0 - -
+__Lspace_3 0 0 ABS 0 - -
+__Lspace_4 0 0 ABS 0 - -
+__Ludata_bank0 188 0 ABS 0 udata_bank0 -
+__Ludata_bank1 188 0 ABS 0 udata_bank1 -
+__Ludata_bank2 188 0 ABS 0 udata_bank2 -
+__Ludata_bank3 188 0 ABS 0 udata_bank3 -
+__H__absolute__ 0 0 ABS 0 __absolute__ -
+__Hudata_shr 188 0 ABS 0 udata_shr -
+__Ludata_shr 188 0 ABS 0 udata_shr -
+# %SPLITSTAB Section
+# This section enumerates all the psect splits performed by the assembler.
+# The beginning of the section is indicated by %SPLITSTAB.
+# Each line is a record a particular split, where the parent psect is on
+# the left and the child on the right.  Note that a child psect is always
+# split form the top of the parent psect. All splits from a given parent
+# are listed in the order in which they occurred.
+%SPLITSTAB
+# %DABS Section
+# This section contains a table of all usuage of the assember
+# directive DABS in the program. Each line has the following format:
+#   <name> <space> <address> <size>
+# If the DABS was originally labelled then that shall be <name>,
+# otherwise name will be "-".  The <space> number is in decimal.
+# <address> and <size> are in byte units as unqaulified hexadecimal
+%DABS
+# %SEGMENTS Section
+# This sections enumerates the segments of the program.  Each segment
+# is described on a single line as follows:
+#    <name> <space> <link address> <file address> <size> <delta>
+# Addresses and size are in unqualified hexadecimal.  The link address
+# and size are in units of delta. The file address is in units of bytes.
+# All other numeric quantities are in decimal.
+%SEGMENTS
+# %NOTES Section
+# This section contains data of all the note-psects.  The beginning of the section
+# is indicated by %NOTES. The first line indicates the name and decimal
+# byte-length of the first note-psect, e.g.
+#   $codecov_info_hdr 16
+# Each line that follows contains the byte-data of the psect in hexadecimal as a
+# space-separated list. These lines are limited to 16 bytes of data.
+%NOTES

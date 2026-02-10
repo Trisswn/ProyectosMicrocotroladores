@@ -1,0 +1,46 @@
+__S0 0 0 ABS 0
+__S1 0 0 ABS 0
+__S3 0 0 ABS 0
+__Hconfig 2008 0 CONFIG 4
+__Lconfig 0 0 CONFIG 4
+__HCode 13 0 ABS 0
+__LCode 0 0 ABS 0
+__Hcode 26 0 ABS 0
+__Lcode 26 0 ABS 0
+__Hdata 26 0 ABS 0
+__Ldata 26 0 ABS 0
+__Hudata_bank0 26 0 ABS 0
+__Ludata_bank0 26 0 ABS 0
+__H__absolute__ 0 0 ABS 0
+__L__absolute__ 0 0 ABS 0
+__Hedata 26 0 ABS 0
+__Ledata 26 0 ABS 0
+__Hudata 26 0 ABS 0
+__Ludata 26 0 ABS 0
+__Hspace_0 26 0 ABS 0
+__Lspace_0 0 0 ABS 0
+__Hspace_1 0 0 ABS 0
+__Lspace_1 0 0 ABS 0
+__Hspace_3 0 0 ABS 0
+__Lspace_3 0 0 ABS 0
+__Hspace_4 400F 0 ABS 0
+__Lspace_4 0 0 ABS 0
+%segments
+%locals
+build/default/debug/PROGRAMA1.o
+PROGRAMA1.asm
+14 0 0 ABS 0
+20 5 0 ABS 0
+22 6 0 ABS 0
+23 7 0 ABS 0
+25 8 0 ABS 0
+27 9 0 ABS 0
+31 A 0 ABS 0
+32 B 0 ABS 0
+34 C 0 ABS 0
+35 D 0 ABS 0
+39 E 0 ABS 0
+40 F 0 ABS 0
+41 10 0 ABS 0
+44 11 0 ABS 0
+45 12 0 ABS 0
