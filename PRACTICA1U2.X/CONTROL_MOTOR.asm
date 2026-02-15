@@ -1,158 +1,206 @@
 PROCESSOR   16F877A
-#include    <xc.inc>
+    #include    <xc.inc>
 
-config FOSC = XT        ; Oscilador de cristal (4 MHz)
-config WDTE = ON        ; Watchdog Timer activo (seguridad)
-config PWRTE = OFF      ; Power-up Timer desactivado
-config BOREN = ON       ; Brown-out Reset activo
-config LVP = OFF        ; Programación de bajo voltaje desactivada
-config CPD = OFF        ; Protección de datos EEPROM desactivada
-config WRT = OFF        ; Protección de escritura desactivada
-config CP = OFF         ; Protección de código desactivada
+    CONFIG  FOSC = XT           
+    CONFIG  WDTE = OFF         
+    CONFIG  PWRTE = ON        
+    CONFIG  BOREN = OFF      
+    CONFIG  CPD = OFF        
+    CONFIG  LVP = OFF      
+    CONFIG  WRT = OFF
+    CONFIG  CP = OFF
 
+    PSECT   Code, delta=2
+
+; VARIABLES ------------------------------
+
+    HORARIO_H       EQU     0x05    ; Parte Alta de 1500 (1500 = 0x05DC)
+    HORARIO_L       EQU     0xDC    ; Parte Baja de 1500
+    ANTIHORARIO_H   EQU     0x03    ; Parte Alta de 1000 (1000 = 0x03E8)
+    ANTIHORARIO_L   EQU     0xE8    ; Parte Baja de 1000
+
+    ; Variables en RAM (Banco 0)
+    TEMPORAL        EQU     0x20
+    DELAY_CONT      EQU     0x21
+    CONT_SEGUNDOS   EQU     0x22
+
+; PROGRAMA -------------------------------
+
+    org         0x00
+    goto        INICIO
+
+INICIO:
+
+; INICIALIZACIÓN --------------------------
+
+    bsf         STATUS,     5       ; Banco 1
+    bcf         STATUS,     6
+
+    movlw       0x06
+    movwf       ADCON1              ; Pines digitales en PORTA
+
+    clrf        TRISB               ; PORTB todo salida (Motor)
+    movlw       0x1F
+    movwf       TRISA               ; PORTA entradas (Switches RA0-RA4)
     
-HORARIO      EQU  1500     ; Pasos/Pulsos para sentido horario
-ANTIHORARIO  EQU  1000     ; Pasos/Pulsos para sentido antihorario
-PERIODO      EQU  255      ; Valor para el periodo del PWM
-TEMPORAL     EQU  0x20     ; Registro auxiliar
-DELAY_CONT   EQU  0x21     ; Multiplicador para la subrutina de tiempo
+    movlw       0b00000001          ; RC0 entrada (T1CKI), RC1 y RC2 salidas (CCP)
+    movwf       TRISC               ; b'00000001'
 
+    movlw       0b11000111          ; Prescaler TMR0 1:256
+    movwf       OPTION_REG
 
-PSECT Code, delta=2
-org 0x00
-goto INICIO
+    movlw       254                 ; Periodo PWM (PR2)
+    movwf       PR2
 
-; --- SUBRUTINA DE RETARDO (20ms) ---
-DELAY:
-    movlw   -78            ; Carga TMR0 para que desborde en ~20ms
-    movwf   TMR0
-DELAY_1:
-    clrwdt                 ; Limpia el perro guardián
-    btfss   INTCON, 2      ; ¿Ya desbordó el TMR0? (Bit T0IF) 20ms
-    goto    DELAY_1
-    bcf     INTCON, 2      ; Limpia la bandera de desborde
-    decfsz  DELAY_CONT, f  ; Repite según el valor en DELAY_CONT
-    goto    DELAY
+    bcf         STATUS,     5       ; Banco 0
+    bcf         STATUS,     6
+
+    clrf        PORTB
+    clrf        PORTA
+    clrf        PORTC
+
+; FUNCIÓN PRINCIPAL -----------------------
+
+BUCLE_PRINCIPAL:
+    
+    ; Configurar CCP2 en modo PWM
+    movlw       0x0C                ; Modo PWM
+    movwf       CCP2CON
+
+    movlw       0xFF                ; Valor temporal máximo (255)
+    movwf       TEMPORAL
+    clrf        CCPR2L              ; Velocidad inicial 0
+
+    movlw       0x04                ; TMR2 ON, Prescaler 1
+    movwf       T2CON
+
+; PASO 1: ARRANQUE SUAVE (SENTIDO HORARIO)
+    
+    movlw       0x02                ; RB1 ON (Sentido Horario)
+    movwf       PORTB	
+
+RAMPA_SUBIDA:
+    call        RETARDO_40MS
+    
+    incf        CCPR2L, f           ; Aumentar ciclo de trabajo
+    decfsz      TEMPORAL, f         ; ¿Llegó a 255?
+    goto        RAMPA_SUBIDA        ; No, seguir subiendo
+
+; PASO 2: GIRAR X PASOS (HORARIO)
+    
+    ; Configurar CCP1 para contar pasos (Modo Compare)
+    clrf        TMR1L
+    clrf        TMR1H
+    
+    movlw       HORARIO_H
+    movwf       CCPR1H
+    movlw       HORARIO_L
+    movwf       CCPR1L
+
+    movlw       0x0B                ; Compare mode, trigger special event
+    movwf       CCP1CON
+    
+    movlw       0x03                ; TMR1 ON, External Clock (Encoder)
+    movwf       T1CON
+    
+    bcf         PIR1, 2             ; Limpiar flag CCP1IF
+
+ESPERA_PASOS_HOR:
+    btfss       PIR1, 2             ; ¿Terminó de contar?
+    goto        ESPERA_PASOS_HOR
+    
+    bcf         PIR1, 2             ; Limpiar flag
+    clrf        PORTB               ; Apagar motor
+
+; PASO 3: PARAR 1 SEGUNDO -----------------
+    bcf		T1CON,	0
+    call        RETARDO_1S
+    clrf	TMR1L
+    clrf	TMR1H
+    movlw       0x0B                ; Compare mode, trigger special event (de nuevo)
+    movwf       CCP1CON
+
+; PASO 4: GIRAR X PASOS (ANTIHORARIO) CON VELOCIDAD RA4-RA0
+    
+    ; Cargar pasos antihorario
+    movlw       ANTIHORARIO_H
+    movwf       CCPR1H
+    movlw       ANTIHORARIO_L
+    movwf       CCPR1L
+
+    ; Leer velocidad de PORTA
+    movf        PORTA, w
+    movwf       TEMPORAL            ; Guardar switches
+    
+    ; Multiplicar por 8 para obtener PWM útil
+    bcf         STATUS, 0           ; Limpiar Carry
+    rlf         TEMPORAL, f         ; x2
+    bcf		STATUS,	0
+    rlf         TEMPORAL, f         ; x4
+    bcf		STATUS,	0	    
+    rlf         TEMPORAL, w         ; x8 -> W
+    
+    movwf       CCPR2L              ; Cargar velocidad al PWM
+
+    movlw       0x01                ; RB0 ON (Sentido Antihorario)
+    movwf       PORTB
+    
+    bcf         PIR1, 2             ; Limpiar flag CCP1IF
+    bsf		T1CON, 0
+
+ESPERA_PASOS_ANTI:
+    btfss       PIR1, 2             ; ¿Terminó de contar?
+    goto        ESPERA_PASOS_ANTI
+    
+    bcf         PIR1, 2             ; Limpiar flag
+
+; PASO 5: DISMINUCIÓN VELOCIDAD -----------
+
+RAMPA_BAJADA:
+    call        RETARDO_40MS
+    
+    movf        CCPR2L, f           ; Verificar si es 0
+    btfsc       STATUS, 2           ; Z=1? (Es cero)
+    goto        FIN_RAMPA_BAJADA
+    
+    decf        CCPR2L, f           ; Disminuir velocidad
+    goto        RAMPA_BAJADA
+
+FIN_RAMPA_BAJADA:
+    clrf        PORTB               ; Asegurar motor apagado
+
+; PASO 6: PARAR 1 SEGUNDO Y REPETIR -------
+
+    call        RETARDO_1S
+    goto        BUCLE_PRINCIPAL
+
+; SUBRUTINAS DE TIEMPO --------------------
+
+RETARDO_1S:
+    movlw       50                  ; 50 veces 20ms = 1000ms
+    movwf       CONT_SEGUNDOS
+BUCLE_1S:
+    call        RETARDO_20MS
+    decfsz      CONT_SEGUNDOS, f
+    goto        BUCLE_1S
     return
 
-; --- CONFIGURACIÓN INICIAL ---
-INICIO:
-    clrf    PORTB          ; Limpiar puertos
-    clrf    PORTA
-    clrf    PORTC
-    
-    bsf     STATUS, 5      ; --- Cambio al BANCO 1 ---
-    bcf     STATUS, 6
-    
-    movlw   0x06           ; Configura todos los pines de PORTA como digitales
-    movwf   ADCON1
-    clrf    TRISB          ; PORTB como salida (Motores)
-    movlw   0b00011111     ; RA0 a RA4 como entradas (Switches)
-    movwf   TRISA
-    movlw   0b11111101     ; RC1 como salida (CCP2 / PWM) y RC0 entrada (T1CKI)
-    movwf   TRISC
-    
-    ; Configuración OPTION_REG: Prescaler 1:256 asignado al TMR0
-    movlw   0b11000111
-    movwf   OPTION_REG
-    
-    movlw   PERIODO-1      ; Frecuencia del PWM cargada en PR2
-    movwf   PR2
-    
-    bcf     STATUS, 5      ; --- Regresar al BANCO 0 ---
-    
-BUCLE:
-    clrwdt
-    ; Configuración CCP2 para modo PWM
-    movlw   0b00001100 
-    movwf   CCP2CON
-    movlw   255
-    movwf   TEMPORAL       ; Usado para contar los incrementos de velocidad
-    clrf    CCPR2L         ; Iniciar con velocidad 0
-    movlw   0b00000111     ; TMR2 ON, Prescaler 1:16 (Base para PWM)
-    movwf   T2CON
+RETARDO_40MS:
+    call        RETARDO_20MS
+    call        RETARDO_20MS
+    return
 
-; --- PASO 1: ACELERACIÓN SUAVE ---
-PASO_1:
-    movlw   0b00000010     ; Sentido horario (IN2=1, IN1=0 en Puente H)
-    movwf   PORTB
-    movlw   2              ; Retardo de 40ms por cada incremento
-    movwf   DELAY_CONT
-    call    DELAY
-    incf    CCPR2L, f      ; Aumenta el ciclo de trabajo (Duty Cycle)
-    decfsz  TEMPORAL, f    ; ¿Llegó al máximo (255)?
-    goto    PASO_1
+RETARDO_20MS:
+    ; TMR0 con prescaler 256. 
+    ; 20ms / (1us * 256) = 78 cuentas aprox.
+    ; 256 - 78 = 178
+    movlw       178
+    movwf       TMR0
+    bcf         INTCON, 2           ; Limpiar flag T0IF
 
-; --- PASO 2: CONTEO DE PASOS CON ENCODER (CCP1 + TMR1) ---
-PASO_2:
-    clrf    TMR1L          ; Limpiar contador de pulsos
-    clrf    TMR1H
-    movlw   high(HORARIO)  ; Carga el límite de pasos (1500)
-    movwf   CCPR1H
-    movlw   low(HORARIO)
-    movwf   CCPR1L
-    
-    ; CCP1 en modo comparador: genera evento cuando TMR1 == CCPR1
-    movlw   0b00001011 
-    movwf   CCP1CON
-    
-    ; TMR1 como CONTADOR EXTERNO (Bit 1 = 1) para leer el Encoder en RC0
-    movlw   0b00000111     
-    movwf   T1CON
-    bcf     PIR1, 2        ; Limpiar bandera CCP1IF
+ESPERA_TMR0:
+    btfss       INTCON, 2           ; Esperar desbordamiento
+    goto        ESPERA_TMR0
+    return
 
-PASO_2_1:
-    clrwdt
-    btfss   PIR1, 2        ; ¿Se alcanzó el número de pasos?
-    goto    PASO_2_1       ; No, seguir girando
-    bcf     PIR1, 2
-    clrf    PORTB          ; Paso 2 cumplido: detiene el motor
-
-; --- PASO 3: PARADA DE 1 SEGUNDO ---
-PASO_3:
-    movlw   50             ; 50 * 20ms = 1000ms (1 segundo)
-    movwf   DELAY_CONT
-    call    DELAY
-
-; --- PASO 4: ANTIHORARIO Y VELOCIDAD POR SWITCHES ---
-PASO_4:
-    movlw   high(ANTIHORARIO)
-    movwf   CCPR1H
-    movlw   low(ANTIHORARIO)
-    movwf   CCPR1L
-    
-    ; Cálculo de velocidad: (PORTA) * 8
-    movf    PORTA, w       ; Lee switches (RA4-RA0)
-    movwf   TEMPORAL
-    bcf     STATUS, 0      ; Limpiar carry
-    rlf     TEMPORAL, f    ; Rotar a la izquierda (x2)
-    rlf     TEMPORAL, f    ; Rotar (x4)
-    rlf     TEMPORAL, w    ; Rotar y mover a W (x8)
-    movwf   CCPR2L         ; Asigna resultado al Duty Cycle del PWM
-    
-    movlw   0b00000001     ; Sentido antihorario (IN2=0, IN1=1)
-    movwf   PORTB
-
-PASO_4_1:
-    clrwdt
-    btfss   PIR1, 2        ; Esperar a que el encoder cuente 1000 pasos
-    goto    PASO_4_1
-    bcf     PIR1, 2
-
-; --- PASO 5: DESACELERACIÓN ---
-PASO_5:
-    movlw   2              ; Retardo para que la frenada sea visible
-    movwf   DELAY_CONT
-    call    DELAY
-    decfsz  CCPR2L, f      ; Baja la velocidad poco a poco
-    goto    PASO_5
-
-; --- PASO 6: PARADA FINAL Y REINICIO ---
-PASO_6:
-    clrf    PORTB          ; Apaga motor
-    movlw   50             ; Espera 1 segundo
-    movwf   DELAY_CONT
-    call    DELAY
-    goto    BUCLE          ; Regresa al Paso 1
-
-END
+    end
