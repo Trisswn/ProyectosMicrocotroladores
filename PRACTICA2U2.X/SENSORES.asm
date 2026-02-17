@@ -36,8 +36,8 @@ PROCESSOR   16F877A
     DECIMAS	    EQU	    0x2D		; Para la conversión BCD
     AUX_BCD_H	    EQU	    0x2E
     AUX_BCD_L	    EQU	    0x2F		; Ayudan en la conversion
-    TEMP_MAX	    EQU	    0x50
-    TEMP_MIN	    EQU	    0x32
+    TEMP_MAX	    EQU	    50
+    TEMP_MIN	    EQU	    32
 	    
 ; PROGRAMA -------------------------------
 
@@ -51,7 +51,7 @@ INICIO:
     
     movlw	0b00000110			
     movwf	ADCON1				; PORTA digital
-    clrf	TRISA				; RA0-2 entradas
+    clrf	TRISA				; PORTA como salida
     clrf	TRISB				; PORTB como salida
     clrf	TRISC				; PORTC como salida
     
@@ -124,9 +124,9 @@ MOTOR:
 
 CHECAR_MIN:
     
-    movf	CONTADOR, w
-    sublw	TEMP_MIN
-    btfsc	STATUS,	  0
+    movlw	TEMP_MIN
+    subwf	CONTADOR, w
+    btfss	STATUS,	  0
     goto	RELE
     bcf		PORTC,	  0			; Apagar rele
     goto	IMPRIMIR_LCD
@@ -141,6 +141,7 @@ IMPRIMIR_LCD:
     movwf	ADCON1				; PORTA digital
     bcf		STATUS,	    5			; Regresar al banco 0
     
+    call	LCD_CLEAR			; Limpiar LCD
     call	LCD_HOME			; Poner cursor al inicio
     movlw	'T'
     call	LCD_CHAR
@@ -162,6 +163,7 @@ IMPRIMIR_LCD:
     movlw	'.'
     call	LCD_CHAR
     movf	DECIMAS,    w
+    andlw	0x0F
     call	LCD_DIGITO
     goto	BUCLE
 
