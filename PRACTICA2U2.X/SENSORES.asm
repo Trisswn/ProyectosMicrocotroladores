@@ -161,7 +161,7 @@ IMPRIMIR_LCD:
     call	LCD_DIGITO
     movlw	'.'
     call	LCD_CHAR
-    movwf	DECIMAS,    w
+    movf	DECIMAS,    w
     call	LCD_DIGITO
     goto	BUCLE
 
