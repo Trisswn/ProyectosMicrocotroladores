@@ -96,7 +96,7 @@ ADC_ESPERA:
     movf	ADRESH,	w
     movwf	DATOA_H				; Guardar parte alta
     
-    movlw	243				; Multiplicar ADC * 243
+    movlw	240				; Multiplicar ADC * 243
     movwf	MULTI_L
     clrf	MULTI_H				; Cargar el multiplicador
     
